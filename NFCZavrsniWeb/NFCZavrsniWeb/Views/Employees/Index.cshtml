@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NFCZavrsniWeb.Models.Entity.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Working)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmploymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Working)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkPlace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmploymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

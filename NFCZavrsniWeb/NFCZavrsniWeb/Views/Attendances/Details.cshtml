@@ -1,0 +1,58 @@
+﻿@model NFCZavrsniWeb.Models.Entity.Attendance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Attendance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee1.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee1.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tag1.TagContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tag1.TagContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NFCContentRead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NFCContentRead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NFCContentUploaded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NFCContentUploaded)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

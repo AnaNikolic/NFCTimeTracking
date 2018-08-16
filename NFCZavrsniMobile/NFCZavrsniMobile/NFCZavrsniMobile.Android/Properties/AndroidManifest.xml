@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.NFCZavrsniMobile.Android">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
+	<application android:label="NFCZavrsniMobile.Android"></application>
+	<uses-permission android:name="android.permission.NFC" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+	<uses-feature android:name="android.hardware.nfc" android:required="true" />
+	<activity android:launchMode="singleTask" android:name="NFCZavrsniMobile.MainActivity">
+		<intent-filter>
+			<action android:name="android.nfc.action.TECH_DISCOVERED" />
+		</intent-filter>
+		<meta-data android:name="android.nfc.action.TECH_DISCOVERED" android:resource="@xml/nfc_tech_filter" />
+	</activity>
+</manifest>

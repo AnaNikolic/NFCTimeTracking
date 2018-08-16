@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NFCZavrsniWeb.Models.Entity.Attendance>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.OIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tag1.TagContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NFCContentRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NFCContentUploaded)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.OIB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tag1.TagContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NFCContentRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NFCContentUploaded)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

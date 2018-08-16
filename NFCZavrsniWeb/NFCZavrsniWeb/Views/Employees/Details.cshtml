@@ -1,0 +1,82 @@
+﻿@model NFCZavrsniWeb.Models.Entity.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Working)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Working)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmploymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmploymentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

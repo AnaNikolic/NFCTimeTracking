@@ -1,0 +1,58 @@
+﻿@model NFCZavrsniWeb.Models.Entity.Tag
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tag</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfAttendance1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfAttendance1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TagContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TagContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
