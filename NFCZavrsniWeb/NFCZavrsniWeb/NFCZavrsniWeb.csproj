@@ -228,7 +228,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\APIModels\PersonEmployee.cs" />
     <Compile Include="Models\Entity\Attendance.cs" />
     <Compile Include="Models\Entity\Client.cs" />
     <Compile Include="Models\Entity\Employee.cs" />
@@ -243,6 +242,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Connected Services\ASPSMSX2\configuration91.svcinfo" />
     <None Include="Connected Services\ASPSMSX2\configuration.svcinfo" />
     <Content Include="Connected Services\ASPSMSX2\NFCZavrsniWeb.ASPSMSX2.vouchers.datasource">

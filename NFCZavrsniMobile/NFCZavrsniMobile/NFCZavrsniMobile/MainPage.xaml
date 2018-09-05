@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NFCZavrsniMobile"
              xmlns:widget="clr-namespace:Android.Widget;assembly=Mono.Android"
-             x:Class="NFCZavrsniMobile.MainPage">
-
+             x:Class="NFCZavrsniMobile.MainPage" Title="NFC time tracking">
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Welcome to Xamarin.Forms!" 

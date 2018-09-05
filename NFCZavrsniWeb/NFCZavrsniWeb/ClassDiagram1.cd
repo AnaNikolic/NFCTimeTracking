@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NFCZavrsniWeb.Models.Entity.Attendance">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAggAAAAAAQAAAADAAAAAQAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Entity\Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.Client">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAQACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.Employee">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAEAAACAAgAEAAAAAQAAAAAAACAACAAAIAAAAAAQ=</HashCode>
+      <FileName>Models\Entity\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.Location">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity\Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.Person">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAw=</HashCode>
+      <FileName>Models\Entity\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.Tag">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAgQAAAAIAAAAAgAEACABAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Entity\Tag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NFCZavrsniWeb.Models.Entity.TypeOfAttendance">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity\TypeOfAttendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

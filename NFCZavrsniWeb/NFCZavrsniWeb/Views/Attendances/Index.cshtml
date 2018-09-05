@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All attendances</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,16 +15,16 @@
             @Html.DisplayNameFor(model => model.Employee1.OIB)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tag1.TagContent)
+            Tag Content
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            Time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NFCContentRead)
+            NFC ContentRead
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NFCContentUploaded)
+            NFC ContentUploaded
         </th>
         <th></th>
     </tr>
@@ -48,8 +48,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
         </td>
     </tr>
 }

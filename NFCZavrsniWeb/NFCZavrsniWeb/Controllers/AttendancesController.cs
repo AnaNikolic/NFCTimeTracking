@@ -20,8 +20,19 @@ namespace NFCZavrsniWeb.Controllers
         // GET: Attendances
         public async Task<ActionResult> Index()
         {
-            var attendance = db.Attendance.Include(a => a.Employee1).Include(a => a.Tag1);
+            IQueryable<Attendance> attendance;
+            if (User.IsInRole("SystemAdministrator"))
+            {
+                attendance = db.Attendance.Include(a => a.Employee1).Include(a => a.Tag1);
+            }
+            else
+            {
+                int client = db.Employee.Where(c => c.Email == User.Identity.Name).First().Client;
+                attendance = db.Attendance.Where(x => x.Employee == (db.Employee.Where(y => y.Client == client)).FirstOrDefault().ID)
+                    .Include(a => a.Employee1).Include(a => a.Tag1);
+            }
             return View(await attendance.ToListAsync());
+
         }
 
         // GET: Attendances/Details/5

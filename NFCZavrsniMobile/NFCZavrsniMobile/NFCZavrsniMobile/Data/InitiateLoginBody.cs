@@ -9,9 +9,6 @@ namespace NFCZavrsniMobile.Data
         public string PhoneID { get; set; }
         public string PhoneNumber { get; set; }
 
-        /// <summary>
-        /// Creates body of http post request
-        /// </summary>
         public InitiateLogInBody(string id, string number)
         {
             PhoneID = id;

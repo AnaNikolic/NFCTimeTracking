@@ -18,6 +18,7 @@ using Android.Telephony;
 using Xamarin.Forms;
 using Android.Support.V4.Content;
 using Android;
+using NFCZavrsniMobile.Helpers;
 
 namespace NFCZavrsniMobile.Droid
 {
@@ -62,26 +63,7 @@ namespace NFCZavrsniMobile.Droid
             }
             else 
             {
-                if (nfcAdapter.IsEnabled)
-                {
-                    /*
-                    var rawMessages = Intent.GetParcelableArrayExtra(NfcAdapter.ExtraNdefMessages);
-                    var msg = (NdefMessage)rawMessages[0];
-                    var theRecord = msg.GetRecords()[0];
-                    var tagName = Encoding.ASCII.GetString(theRecord.GetPayload());
-
-                    var alert = new AlertDialog.Builder(this).Create();
-                    alert.SetMessage(tagName);
-                    alert.SetTitle("NFC is working on this device");
-                    alert.Show();
-                    /*
-                    var alert = new AlertDialog.Builder(this).Create();
-                    alert.SetMessage("NFC is available.");
-                    alert.SetTitle("NFC is working on this device");
-                    alert.Show();
-                    */
-                }
-                else
+                if (!nfcAdapter.IsEnabled)
                 {
                     var alert = new AlertDialog.Builder(this).Create();
                     alert.SetMessage("NFC is currently off.");
@@ -92,7 +74,8 @@ namespace NFCZavrsniMobile.Droid
             
             telephonyManager = (TelephonyManager)GetSystemService(TelephonyService);
             IMEINumber = telephonyManager.Imei;
-            LoadApplication(new App(IMEINumber));
+            Settings.IMEI = IMEINumber;
+            LoadApplication(new App());
         }
         
 
@@ -106,7 +89,6 @@ namespace NFCZavrsniMobile.Droid
             base.OnResume();
             if (nfcAdapter != null)
             {
-                
                 if (NFCdevice != null)
                 {
                     var intent = new Intent(this, GetType()).AddFlags(ActivityFlags.SingleTop);
@@ -143,8 +125,5 @@ namespace NFCZavrsniMobile.Droid
             base.OnNewIntent(intent);
             x.OnNewIntent(this, intent);
         }
-
-
     }
-
 }

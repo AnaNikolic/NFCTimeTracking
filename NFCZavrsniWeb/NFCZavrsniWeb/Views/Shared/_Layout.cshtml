@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("NFC time tracking", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -28,7 +28,10 @@
                     {
                         <li>@Html.ActionLink("People", "Index", "People")</li>
                         <li>@Html.ActionLink("Attendances", "Index", "Attendances")</li>
-                        <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+                        if (User.IsInRole("SystemAdministrator"))
+                        {
+                            <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+                        }
                         <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
                         <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
                         <li>@Html.ActionLink("Tags", "Index", "Tags")</li>

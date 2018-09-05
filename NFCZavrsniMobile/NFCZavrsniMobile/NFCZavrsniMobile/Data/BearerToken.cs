@@ -25,6 +25,5 @@ namespace NFCZavrsniMobile.Data
         [JsonProperty(PropertyName = ".expires")]
         [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime Expires { get; set; }
-
     }
 }

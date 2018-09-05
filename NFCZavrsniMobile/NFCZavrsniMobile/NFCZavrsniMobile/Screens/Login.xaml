@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NFCZavrsniMobile.Screens.Login">
+             x:Class="NFCZavrsniMobile.Screens.Login"
+             Title="NFC time tracking">
+
     <ContentPage.Content>
         <StackLayout
             VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand">
             <Label Text="Log in" FontSize="Large" HorizontalOptions="CenterAndExpand"  Margin="0, 20, 15, 5" FontAttributes="Bold"/>
-            <Entry x:Name="phoneNumber" Placeholder="+385999999999"/>
+            <Entry x:Name="phoneNumberInput" Placeholder="+385999999999" Keyboard="Numeric" Text="+385"/>
             <Button Text="Verify" HorizontalOptions="Center" Clicked="SendCode" />
         </StackLayout>
     </ContentPage.Content>

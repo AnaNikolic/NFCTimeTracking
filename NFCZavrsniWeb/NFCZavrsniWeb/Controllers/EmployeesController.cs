@@ -15,8 +15,8 @@ using Microsoft.AspNet.Identity;
 
 namespace NFCZavrsniWeb.Controllers
 {
-    [NoDirectAccess]
-    [Authorize(Roles = "SystemAdministrator, ClientAdministrator")]
+    //[NoDirectAccess]
+    //[Authorize(Roles = "SystemAdministrator, ClientAdministrator")]
     public class EmployeesController : Controller
     {
         private ModelNFCZavrsniWeb db = new ModelNFCZavrsniWeb();
@@ -60,7 +60,8 @@ namespace NFCZavrsniWeb.Controllers
             }
             else
             {
-                employee = db.Employee.Where(x => x.Client == db.Employee.Where(c => c.Email == User.Identity.Name).First().Client).Include(e => e.Client1).Include(e => e.Person);
+                int client = db.Employee.Where(c => c.Email == User.Identity.Name).First().Client;
+                employee = db.Employee.Where(x => x.Client == client).Include(e => e.Client1).Include(e => e.Person);
             }
             return View(await employee.ToListAsync());
         }
@@ -95,7 +96,7 @@ namespace NFCZavrsniWeb.Controllers
             {
                 ViewBag.Client = new SelectList(db.Client, "ID", "Name");
             }
-            ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName");
+            ViewBag.OIB = new SelectList(db.Person, "OIB", "OIB");
             return View();
         }
 
@@ -104,7 +105,7 @@ namespace NFCZavrsniWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,OIB,Client,Working,WorkPlace,EmploymentDate,Email,PhoneNumber,PhoneID")] Employee employee)
+        public async Task<ActionResult> Create([Bind(Include = "ID,OIB,Client,Working,WorkPlace,EmploymentDate,Email,PhoneNumber,PhoneID")] Employee employee, [Bind(Include ="Admin")] bool Admin = false)
         {
             if (ModelState.IsValid)
             {
@@ -114,7 +115,14 @@ namespace NFCZavrsniWeb.Controllers
                 if (result.Succeeded)
                 {
                     user = await UserManager.FindByNameAsync(employee.Email);
-                    await UserManager.AddToRoleAsync(user.Id, "User");
+                    if (Admin == true) //u koju ulogu dodaje
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "ClientAdministrator");
+                    }
+                    else
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, "User"); 
+                    }
                     await UserManager.SetPhoneNumberAsync(user.Id, employee.PhoneNumber);
                     await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
                     var code = await UserManager.GenerateChangePhoneNumberTokenAsync(user.Id, employee.PhoneNumber);
@@ -123,7 +131,8 @@ namespace NFCZavrsniWeb.Controllers
                     {
                         db.Employee.Add(employee);
                         await db.SaveChangesAsync();
-
+                        //notify phone added
+                        //could send a messafe to user that his account has been created
                         //var message = new IdentityMessage
                         //{
                         //    Destination = employee.PhoneNumber,
@@ -199,6 +208,20 @@ namespace NFCZavrsniWeb.Controllers
                 ViewBag.Client = new SelectList(db.Client, "ID", "Name");
             }
             ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
+
+            var userr = UserManager.FindByName(employee.Email);
+            if (UserManager.IsInRole(userr.Id, "SystemAdministrator"))
+            {
+                ViewData.Add("Admin", "disabled checked value=true");
+            }
+            else if (UserManager.IsInRole(userr.Id, "ClientAdministrator"))
+            {
+                ViewData.Add("Admin", "checked value=true");
+            }
+            else
+            {
+                ViewData.Add("Admin", "value=false");
+            }
             return View(employee);
         }
 
@@ -207,46 +230,31 @@ namespace NFCZavrsniWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,OIB,Client,Working,WorkPlace,EmploymentDate,Email,PhoneNumber,PhoneID")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,OIB,Client,Working,WorkPlace,EmploymentDate,Email,PhoneNumber,PhoneID")] Employee employee, [Bind(Include = "Admin")] bool Admin = false)
         {
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = employee.Email, Email = employee.Email };
-                var result = await UserManager.UpdateAsync(user);
+                var appUser = UserManager.FindByName(employee.Email);
+                {
+                    if (UserManager.IsInRole(appUser.Id, "ClientAdministrator") && !Admin)
+                    {
+                        await UserManager.RemoveFromRoleAsync(appUser.Id, "ClientAdministrator");
+                        await UserManager.AddToRoleAsync(appUser.Id, "User");
+                    }
+                    else if(UserManager.IsInRole(appUser.Id, "User") && Admin)
+                    {
+                        await UserManager.RemoveFromRoleAsync(appUser.Id, "User");
+                        await UserManager.AddToRoleAsync(appUser.Id, "ClientAdministrator");
+                    }
+                }
+
+                var result = await UserManager.UpdateAsync(appUser);
 
                 if (result.Succeeded)
                 {
-                    user = await UserManager.FindByNameAsync(employee.Email);
-                    await UserManager.SetPhoneNumberAsync(user.Id, employee.PhoneNumber);
-                    var code = await UserManager.GenerateChangePhoneNumberTokenAsync(user.Id, employee.PhoneNumber);
-                    result = await UserManager.ChangePhoneNumberAsync(user.Id, employee.PhoneNumber, code);
-                    if (result.Succeeded)
-                    {
-                        db.Entry(employee).State = EntityState.Modified;
-                        await db.SaveChangesAsync();
-
-                        //var message = new IdentityMessage
-                        //{
-                        //    Destination = employee.PhoneNumber,
-                        //    Body = "Your account has been succesfully created"
-                        //};
-                        //await UserManager.SmsService.SendAsync(message);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Failed to verify phone");
-                        if (!User.IsInRole("SystemAdministrator"))
-                        {
-                            ViewBag.Client = new SelectList(db.Client.Where(x => x.ID == db.Employee.Where(c => c.Email == User.Identity.Name).FirstOrDefault().Client), "ID", "Name");
-                        }
-                        else
-                        {
-                            ViewBag.Client = new SelectList(db.Client, "ID", "Name");
-                        }
-                        ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
-                        return View(employee);
-                    }
+                    db.Entry(employee).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
                 }
                 else
                 {
@@ -262,7 +270,7 @@ namespace NFCZavrsniWeb.Controllers
                     ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
                     return View(employee);
                 }
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
             if (!User.IsInRole("SystemAdministrator"))
             {

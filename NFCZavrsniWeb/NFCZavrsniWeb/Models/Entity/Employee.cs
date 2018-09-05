@@ -48,4 +48,10 @@ namespace NFCZavrsniWeb.Models.Entity
         public virtual Person Person { get; set; }
         
     }
+    
+    public partial class IsAdmin
+    {
+        public bool Admin { get; set; }
+    }
+    
 }

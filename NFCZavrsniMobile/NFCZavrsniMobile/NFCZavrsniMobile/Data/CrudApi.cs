@@ -1,5 +1,4 @@
-﻿//using IoMMobileApp.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,10 +11,6 @@ namespace NFCZavrsniMobile.Data
     class CrudApi
     {
         BearerToken Token;
-
-        /// <summary>
-        /// 
-        /// </summary>
         public CrudApi()
         {
         }

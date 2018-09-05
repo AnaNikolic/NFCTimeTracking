@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NFCZavrsniMobile.AddAttendance">
+             x:Class="NFCZavrsniMobile.AddAttendance"
+             Title="NFC time tracking">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="logout" x:Name="logout" Command="{Binding logoutCommand}" Clicked="LogoutClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-           <!-- <Label x:Name="tek" Text="Add new attendance"
+           <Label x:Name="tek" Text="Add new attendance"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Label x:Name="vise" Text="Add new attendance"
+            <!-- <Label x:Name="vise" Text="Add new attendance"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Text="Piši" HorizontalOptions="Center" /> -->
