@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NFCZavrsniWeb.Models.Entity.Tag>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tags</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Client
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Type of attendance
+        </th>
+        <th>
+            Tag Content
+        </th>
+        <th>
+            Tag Serial Number
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOfAttendance1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TagContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            <!--Html.ActionLink("Delete", "Delete", new { id = item.ID })-->
+        </td>
+    </tr>
+}
+
+</table>

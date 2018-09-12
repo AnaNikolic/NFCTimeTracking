@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NFCZavrsniMobile.AddAttendance"
+             Title="NFC time tracking">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="logout" x:Name="logout" Clicked="LogoutClicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:Name="Basic"
+                     IsVisible="True"
+                     VerticalOptions="CenterAndExpand" 
+                     HorizontalOptions="CenterAndExpand" 
+                     Margin="0, -35, 0, 0">
+            <Label x:Name="labelMain" Text="Add new attendance"
+               VerticalOptions="CenterAndExpand" 
+               HorizontalOptions="CenterAndExpand"
+               FontSize="Large" 
+               Margin="0, 0, 15, 5"
+               FontAttributes="Bold"
+               TextColor="Black"/>
+            <Label x:Name="screenText" Text = "Approach NFC tag you want to record attendance for."
+               HorizontalTextAlignment = "Center"
+               FontSize = "Medium"
+               VerticalOptions = "Center"
+               HorizontalOptions = "CenterAndExpand" 
+               Margin="70, 5, 70, 5"/>
+            <Image x:Name="imgAdd" Source="nfcIcon" IsVisible="True"/>
+            <Image x:Name="imgSuccess" Source="success" IsVisible="false" Margin="0, 25, 0, 0"/>
+            <Image x:Name="imgFail" Source="fail" IsVisible="false" Margin="0, 25, 0, 0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

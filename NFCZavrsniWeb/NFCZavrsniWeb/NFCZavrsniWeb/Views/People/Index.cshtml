@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NFCZavrsniWeb.Models.Entity.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>People - List of all people in the system</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> OIB </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td> @Html.DisplayFor(modelItem => item.OIB) </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OIB }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OIB })
+            <!--Html.ActionLink("Delete", "Delete", new { id=item.OIB })-->
+        </td>
+    </tr>
+}
+
+</table>

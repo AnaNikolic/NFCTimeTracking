@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NFCZavrsniMobile.Screens.Login"
+             Title="NFC time tracking">
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand"
+            Margin="0, -35, 0, 0">
+            <Label Text="Log in" 
+                   FontSize="Large" 
+                   HorizontalOptions="CenterAndExpand"  
+                   Margin="0, 0, 15, 5" 
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+            <Label Text = "Please enter your phone number to log in."
+                   HorizontalTextAlignment = "Center"
+                   FontSize = "Medium"
+                   VerticalOptions = "Center"
+                   HorizontalOptions = "CenterAndExpand" 
+                   Margin="70, 5, 70, 5"/>
+            <Entry x:Name="phoneNumberInput"
+                   Margin="50, 5, 50, 5"
+                   Placeholder="+385999999999" 
+                   Keyboard="Numeric" 
+                   Text="+385"/>
+            <Button Text="Verify" 
+                    HorizontalOptions="Center" 
+                    Clicked="SendCode" 
+                    BackgroundColor="Crimson" 
+                    TextColor="White"
+                    BorderRadius="10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
