@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Employee1.OIB)
+            ID attendance
         </th>
         <th>
-            Tag Content
+            @Html.DisplayNameFor(model => model.Employee1.OIB)
+        </th>
+        <th> 
+            Name 
+        </th>
+        <th>
+            Tag
         </th>
         <th>
             Time
-        </th>
-        <th>
-            NFC ContentRead
-        </th>
-        <th>
-            NFC ContentUploaded
         </th>
         <th></th>
     </tr>
@@ -32,23 +32,33 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Employee1.OIB)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tag1.TagContent)
+            @Html.DisplayFor(modelItem => item.Employee1.Person.FirstName) @Html.DisplayFor(modelItem => item.Employee1.Person.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tag1.Client1.Name) /
+            @Html.DisplayFor(modelItem => item.Tag1.Location1.Name) / 
+            @Html.DisplayFor(modelItem => item.Tag1.TypeOfAttendance1.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateTime)
         </td>
+        <!--
         <td>
-            @Html.DisplayFor(modelItem => item.NFCContentRead)
+           Html.DisplayFor(modelItem => item.NFCContentRead)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NFCContentUploaded)
+            Html.DisplayFor(modelItem => item.NFCContentUploaded)
         </td>
+        -->
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }

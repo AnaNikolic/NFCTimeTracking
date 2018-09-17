@@ -96,9 +96,10 @@ namespace NFCZavrsniWeb.Controllers
 
             if (result == SignInStatus.RequiresVerification)
             {
-                if (!await SignInManager.SendTwoFactorCodeAsync("Phone Code"))
-                {
-                    return View("Error");
+                //if (!await SignInManager.SendTwoFactorCodeAsync("Phone Code"))
+                if (!SignInManager.SendTwoFactorCode("Phone Code"))
+                    {
+                        return View("Error");
                 }
                 return RedirectToAction("VerifyCode", new { Provider = "Phone Code" });
             }
@@ -133,7 +134,7 @@ namespace NFCZavrsniWeb.Controllers
             {
                 return View(model);
             }
-
+            
             // The following code protects for brute force attacks against the two factor codes. 
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
@@ -150,6 +151,7 @@ namespace NFCZavrsniWeb.Controllers
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
+
         }
 
         //

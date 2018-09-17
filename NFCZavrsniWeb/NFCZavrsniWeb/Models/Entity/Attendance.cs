@@ -28,5 +28,6 @@ namespace NFCZavrsniWeb.Models.Entity
         public virtual Employee Employee1 { get; set; }
 
         public virtual Tag Tag1 { get; set; }
+
     }
 }

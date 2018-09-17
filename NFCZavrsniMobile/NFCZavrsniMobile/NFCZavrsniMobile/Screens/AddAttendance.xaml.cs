@@ -8,90 +8,98 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using NdefLibrary.Ndef;
-using Poz1.NFCForms.Abstract;
-using System.Collections.ObjectModel;
-using Android.App;
-using Android.Content;
 using NFCZavrsniMobile.Data;
 using NFCZavrsniMobile.Models;
 using NFCZavrsniMobile.Screens;
 using NFCZavrsniMobile.Helpers;
+using NFCZavrsniMobile.Services;
 
 namespace NFCZavrsniMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddAttendance : ContentPage
     {
-        private readonly INfcForms device;
-        private StackLayout screenPanel;
-        private Label screenLabel;
+        private readonly INfc device;
 
         public AddAttendance() {
             InitializeComponent();
-            device = DependencyService.Get<INfcForms>();
+            device = DependencyService.Get<INfc>();
             device.NewTag += HandleNewTag;
-            screenLabel = new Label
-            {
-                Text = "Scan a tag" + System.Environment.NewLine + "to add new attendance!",
-                HorizontalTextAlignment = TextAlignment.Center,
-                TextColor = Color.Blue,
-                FontSize = 24,
-                VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-            };
-            screenPanel = new StackLayout()
-            {
-                Children = { screenLabel },
-                BackgroundColor = Color.White,
-                IsVisible = true,
-                Opacity = 0.7
-            };
-            Content = screenPanel;
         }
 
-        void HandleNewTag(object sender, NfcFormsTag e)
+        void HandleNewTag(object sender, NfcTag e)
         {
             var contentRead = Encoding.ASCII.GetString(e.NdefMessage[0].Payload);
-            //welcomeLabel.Text = contentRead.ToString();
-            var serialNumber = BitConverter.ToString(e.Id); 
+            string serialNumber = BitConverter.ToString(e.Id); 
             var r = new CrudApi(App.btoken);
             Uri restUri = new Uri(Constants.RestURLAddAttendance);
-            AddAttendanceBody body = new AddAttendanceBody(serialNumber, contentRead);
+            string NFCContentUploaded = Guid.NewGuid().ToString();
+            AddAttendanceBody body = new AddAttendanceBody(serialNumber, contentRead, NFCContentUploaded);
             AddAttendanceResponseBody responseBody = null; 
             try
             {
+                var spRecord = new NdefTextRecord
+                {
+                    Payload = Encoding.ASCII.GetBytes(NFCContentUploaded)
+                };
+                var msg = new NdefMessage { spRecord };
+                device.WriteTag(msg);
                 responseBody = Task.Run(async () =>
                 { return await r.PostAsync<AddAttendanceBody, AddAttendanceResponseBody>(restUri, body); }).Result;
-                    var spRecord = new NdefTextRecord
-                    {
-                        Payload = Encoding.ASCII.GetBytes(responseBody.NfcContentUploaded)
-                    };
-                    var msg = new NdefMessage { spRecord };
-                    device.WriteTag(msg);
+                string text = responseBody.EmployeeInfo + " succesfully added attendance no." + responseBody.ID + " on point " + System.Environment.NewLine + responseBody.TagInfo;
+                ShowSuccess(text);
+                
+
             }
             catch (Exception excp)
             {
-                DisplayAlert("Error", "Failed!", "OK");
-
-                    return;
+                ShowFail("An error occurred.");
+                DependencyService.Get<IAudio>().PlayMp3File("door.mp3");
+                return;
             }
-            restUri = new Uri(Constants.RestURLVerifyAttendance);
-            bool proslo = Task.Run(async () => { return await r.PostAsync<AddAttendanceResponseBody>(restUri, responseBody); }).Result;
-            DisplayAlert("Success!", "New attendance successfuly added!", "DONE");
+            Device.StartTimer(System.TimeSpan.FromSeconds(5), () => { ShowBasic(); return true; });
             return;
         }
 
-        public Command LogoutCommand
+
+        public bool ShowSuccess(string text)
         {
-            get
-            {
-                return new Command(() => { Settings.BearerToken = ""; });
-            }
+            screenText.Text = text;
+            imgAdd.IsVisible = false;
+            imgSuccess.IsVisible = true;
+            labelMain.Text = "Success!";
+            Content = Basic;
+            return true;
+        }
+
+        public bool ShowFail(string text)
+        {
+            screenText.Text = text;
+            imgAdd.IsVisible = false;
+            imgFail.IsVisible = true;
+            labelMain.Text = "Failed!";
+            Content = Basic;
+            return true;
+        }
+
+        public void ShowBasic()
+        {
+            labelMain.Text = "Add attendance";
+            screenText.Text = "Approach NFC tag you want to record attendance for.";
+            imgAdd.IsVisible = true;
+            imgSuccess.IsVisible = false;
+            return;
         }
 
         public void LogoutClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Login());
+            var r = new CrudApi(App.btoken);
+            Uri restUri = new Uri(Constants.RestURLLogout);
+            Task.Run(async () => { return await r.PostAsync(restUri); });
+            Settings.BearerToken = "";
+            App.btoken = null;
+            Navigation.PushModalAsync(new NavigationPage(new Login()));
+            
         }
 
     }

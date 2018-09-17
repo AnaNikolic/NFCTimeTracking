@@ -260,14 +260,28 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="icon.ico" />
+    <Content Include="Res\appicon.ico" />
+    <Content Include="Res\nfcIcon.png" />
+    <Content Include="Res\Screenshot %281%29.png" />
+    <Content Include="Res\Screenshot %282%29.png" />
+    <Content Include="Res\Screenshot %283%29.png" />
+    <Content Include="Res\Screenshot %284%29.png" />
+    <Content Include="Res\Screenshot %285%29.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Connected Services\ASPSMSX2\aspsmsx2.wsdl" />
-    <None Include="Properties\PublishProfiles\NFCZavrsniWeb - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\NFCZavrsniWeb20180728100602 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\NFCZavrsniWeb - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\NFCZavrsniWeb - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\NFCZavrsniWeb - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\NFCZavrsniWeb20180728100602 - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -371,6 +385,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Res\appicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

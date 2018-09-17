@@ -30,6 +30,7 @@ namespace NFCZavrsniMobile.Helpers
             }
         }
 
+
         public static string IMEI
         {
             get
@@ -39,6 +40,30 @@ namespace NFCZavrsniMobile.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue("IMEI", value);
+            }
+        }
+
+        public  static string VerifyToken
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("VerifyToken", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("VerifyToken", value);
+            }
+        }
+
+        public static string VerifyPhoneNumber
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("VerifyPhoneNumber", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("VerifyPhoneNumber", value);
             }
         }
     }

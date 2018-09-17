@@ -72,7 +72,7 @@ namespace NFCZavrsniService.Controllers
                 {
                     token = UserManager.GenerateTwoFactorToken(user.Id, "Phone Code");
                     //BITNO---------------------------------------------
-                    await UserManager.SmsService.SendAsync(new IdentityMessage { Body = $"Your security code is {token}", Destination = user.PhoneNumber });
+                    //await UserManager.SmsService.SendAsync(new IdentityMessage { Body = $"Your security code is {token}", Destination = user.PhoneNumber });
                 }
                 else
                 {

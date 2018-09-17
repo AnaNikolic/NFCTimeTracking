@@ -1,31 +1,59 @@
-﻿@{
+﻿<div class="container-fluid">
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+
+
+    <div class="row" style="padding-top:1%">
+        <div class="col-sm-2">
+            <img width="100%" src="~/Res/nfcIcon.png" />
+        </div>
+        <div class="col-sm-6">
+            <h1 class="h3" style="color:red">Welcome to NFC time tracking</h1>
+            <p class="lead"><b>Log in if you have a registered user account.</b></p>
+            <p class="text-justify">
+                This wab app allows registered adiministrators to add, read and modify attendance records and connected data.
+                To register new organization please use contact information displayed below.
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h2 style="margin-top:14%;margin-left:30%">Contact</h2>
+            <p style="margin-left:30%">Find out more: <b>anikolic@foi.hr</b></p>
+        </div>
+        
+    </div>
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    
+</div>
+
+
+<div class="jumbotron " style="background-color:wheat; margin-top:2%">
+    <p class="h5" style="margin-top:-2%; color:black">
+        <b style="margin-left:2.5%"> Simply approach NFC tag and add a new attendance when arriving to or leaving your work place! </b>
+    </p>
+    <div style="vertical-align:central; margin-left:2.5%" >
+        <img style="width:19%" src="~/Res/Screenshot (3).png" />
+        <img style="width:19%" src="~/Res/Screenshot (5).png" />
+        <img style="width:19%" src="~/Res/Screenshot (1).png" />
+        <img style="width:19%" src="~/Res/Screenshot (4).png" />
+        <img style="width:19%" src="~/Res/Screenshot (2).png" />
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+</div>
+<div class="row">
+        <div class="col-sm-4">
+        <h2>Get mobile app</h2>
+        <p>You can download the mobile application provided here:</p>
+        <p><a class="btn btn-danger" href="https://foi-my.sharepoint.com/:u:/g/personal/anikolic_foi_hr/ERVjC6MvTxpCqt3DrfsJScQBon5wPaHht5SnCllmTpVfhQ?e=oaH8F6">Download &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+        <div class="col-sm-8">
+            <p class="text-justify" style="margin-top:6%">
+                The default attendance data input is using the mobile NFC time tracking application.
+                Internet connection and NFC enabled are required for tha application to work.
+                For new users phone number and IMEI device number are required to register into the system.
+            </p>
+        </div>
 </div>

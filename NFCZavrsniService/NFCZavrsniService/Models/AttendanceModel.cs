@@ -14,17 +14,18 @@ namespace NFCZavrsniService.Models
         
         [StringLength(120)]
         public string NFCContentRead { get; set; }
-        
-    }
-
-    public class AttendanceResponseModel
-    {
-        [StringLength(6)]
-        public string ConfirmationToken { get; set; }
 
         [StringLength(120)]
         public string NFCContentUploaded { get; set; }
 
+    }
+
+    public class AttendanceResponseModel
+    {
         public long ID { get; set; }
+
+        public string TagInfo { get; set; }
+
+        public string EmployeeInfo { get; set; }
     }
 }

@@ -14,7 +14,6 @@ namespace NFCZavrsniMobile
         public static BearerToken btoken = null;
 		public App ()
 		{
-            ToolbarItem t = new ToolbarItem { Text = "novii" };
             InitializeComponent();
             if (!string.IsNullOrEmpty(Settings.BearerToken))
             {
@@ -27,11 +26,16 @@ namespace NFCZavrsniMobile
                     MainPage = new NavigationPage(new Login());
                 }
             }
+            else if (Settings.VerifyToken != "")
+            {
+                MainPage = new NavigationPage(new Verify(Settings.VerifyToken, Settings.IMEI, Settings.VerifyPhoneNumber));
+            }
             else
             {
                 MainPage = new NavigationPage(new Login());
             }
 		}
+
 
 		protected override void OnStart ()
 		{

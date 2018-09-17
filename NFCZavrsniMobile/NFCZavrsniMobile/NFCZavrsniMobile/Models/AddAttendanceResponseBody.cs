@@ -6,19 +6,21 @@ namespace NFCZavrsniMobile.Models
 {
     public class AddAttendanceResponseBody
     {
-        public string ConfirmationToken { get; set; }
-        public string NfcContentUploaded { get; set; }
-        public long Id { get; set; }
+        public long ID { get; set; }
+
+        public string TagInfo { get; set; }
+
+        public string EmployeeInfo { get; set; }
 
         public AddAttendanceResponseBody()
         {
         }
 
-        public AddAttendanceResponseBody(string confirmationToken, string nfcContentUploaded, long id)
+        public AddAttendanceResponseBody(long id, string tagInfo, string employeeInfo)
         {
-            ConfirmationToken = confirmationToken;
-            NfcContentUploaded = nfcContentUploaded;
-            Id = id;
+            ID = id;
+            TagInfo = tagInfo;
+            EmployeeInfo = employeeInfo;
         }
     }
 

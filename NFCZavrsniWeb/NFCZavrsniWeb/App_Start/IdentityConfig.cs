@@ -27,6 +27,7 @@ namespace NFCZavrsniWeb
     {
         public Task SendAsync(IdentityMessage message)
         {
+            
             var soapSms = new ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
             soapSms.SendSimpleTextSMS(
                 System.Configuration.ConfigurationManager.AppSettings["ASPSMSUSERKEY"],
@@ -37,6 +38,7 @@ namespace NFCZavrsniWeb
             soapSms.Close();
             // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
+
         }
     }
 

@@ -96,7 +96,7 @@ namespace NFCZavrsniWeb.Controllers
             {
                 ViewBag.Client = new SelectList(db.Client, "ID", "Name");
             }
-            ViewBag.OIB = new SelectList(db.Person, "OIB", "OIB");
+            ViewBag.OIB = new SelectList(db.Person, "OIB", "PersonDetail");
             return View();
         }
 
@@ -151,7 +151,7 @@ namespace NFCZavrsniWeb.Controllers
                         {
                             ViewBag.Client = new SelectList(db.Client, "ID", "Name");
                         }
-                        ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
+                        ViewBag.OIB = new SelectList(db.Person.Include(y => y.FirstName).Include(y => y.LastName), "Lastname", "Person.Lastname" );
                         return View(employee);
                     }
                 }
@@ -166,7 +166,7 @@ namespace NFCZavrsniWeb.Controllers
                     {
                         ViewBag.Client = new SelectList(db.Client, "ID", "Name");
                     }
-                    ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
+                    ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.Person);
                     return View(employee);
                 }
                 return RedirectToAction("Index");
@@ -207,7 +207,7 @@ namespace NFCZavrsniWeb.Controllers
             {
                 ViewBag.Client = new SelectList(db.Client, "ID", "Name");
             }
-            ViewBag.OIB = new SelectList(db.Person, "OIB", "FirstName", employee.OIB);
+            ViewBag.OIB = new SelectList(db.Person, "OIB", "PersonDetail", employee.OIB);
 
             var userr = UserManager.FindByName(employee.Email);
             if (UserManager.IsInRole(userr.Id, "SystemAdministrator"))

@@ -22,7 +22,7 @@ namespace NFCZavrsniService.Models.Entity
 
         [StringLength(120)]
         public string NFCContentUploaded { get; set; }
-        
+
         public bool? Confirmed { get; set; }
 
         public virtual Employee Employee1 { get; set; }

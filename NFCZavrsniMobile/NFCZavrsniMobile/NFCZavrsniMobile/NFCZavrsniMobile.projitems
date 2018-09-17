@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Data\InitiateLoginBody.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\NfcTag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddAttendanceBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AddAttendanceResponseBody.cs" />
@@ -41,6 +42,8 @@
       <DependentUpon>Verify.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IAudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\INfc.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Screens\Login.xaml">

@@ -15,12 +15,6 @@ namespace NFCZavrsniMobile.Data
     {
         private HttpWebRequest ClientBearerPost { get; set; }
         private BearerToken BearerTokenUser { get; set; }
-       /* bool SuccessAuth { get; set; }
-
-        public RestService()
-        {
-            SuccessAuth = false;
-        }*/
 
         public async Task<BearerToken> AuthentificateAsync(Uri url, LogInBody o)
         {

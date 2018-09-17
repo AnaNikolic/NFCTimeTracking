@@ -115,10 +115,14 @@ namespace NFCZavrsniService.Controllers
             var tag = db.Tag.Where(x => x.SerialNumber == attendanceModel.SerialNumber).First();
             if (tag.TagContent != attendanceModel.NFCContentRead)
             {
+                tag.TagContent = attendanceModel.NFCContentUploaded;
+                await db.SaveChangesAsync();
                 return BadRequest("Tag content does not match.");
             }
             if (employee.Working != true)
             {
+                tag.TagContent = attendanceModel.NFCContentUploaded;
+                await db.SaveChangesAsync();
                 return BadRequest("Not allowed, employee not working.");
             }
             Attendance attendance = new Attendance
@@ -127,42 +131,19 @@ namespace NFCZavrsniService.Controllers
                 Tag = tag.ID,
                 DateTime = DateTime.Now,
                 NFCContentRead = attendanceModel.NFCContentRead,
-                Confirmed = false,
-                NFCContentUploaded = Guid.NewGuid().ToString()
+                Confirmed = true,
+                NFCContentUploaded = attendanceModel.NFCContentUploaded
             };
+            tag.TagContent = attendanceModel.NFCContentUploaded;
             db.Attendance.Add(attendance);
             await db.SaveChangesAsync();
-            string token = await UserManager.GenerateTwoFactorTokenAsync(user.Id, "Phone Code");
             AttendanceResponseModel attendanceResponseModel = new AttendanceResponseModel
             {
-                ConfirmationToken = token,
-                NFCContentUploaded = attendance.NFCContentUploaded,
-                ID = attendance.ID
+                ID = attendance.ID,
+                TagInfo = tag.Client1.Name + "/" + tag.Location1.Name + "/" + tag.TypeOfAttendance1.Name,
+                EmployeeInfo = employee.Email
             };
             return Ok(attendanceResponseModel);
-        }
-
-        // POST: api/Attendances
-        [HttpPost]
-        [ActionName("VerifyAttendance")]
-        [Route("api/Attendances/VerifyAttendance", Name = "VerifyAttendanceRoute")]
-        public async Task<IHttpActionResult> VerifyAttendance(AttendanceResponseModel attendanceResponseModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var user = UserManager.Users.Where(x => x.Email == User.Identity.Name).First();
-            bool result = await UserManager.VerifyTwoFactorTokenAsync(user.Id, "Phone Code", attendanceResponseModel.ConfirmationToken);
-            if (result == false)
-            {
-                return BadRequest("Error verifying new attendance.");
-            }
-            Attendance attendance = db.Attendance.Find(attendanceResponseModel.ID);
-            attendance.Confirmed = true;
-            attendance.Tag1.TagContent = attendanceResponseModel.NFCContentUploaded;
-            await db.SaveChangesAsync();
-            return Ok();
         }
 
 

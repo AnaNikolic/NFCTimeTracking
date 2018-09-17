@@ -8,13 +8,13 @@ namespace NFCZavrsniMobile.Models
     {
         public string SerialNumber { get; set; }
         public string NFCContentRead { get; set; }
-        public string GPSLoction { get; set; }
+        public string NFCContentUploaded { get; set; }
 
-        public AddAttendanceBody(string serialNumber, string nfcContentRead)
+        public AddAttendanceBody(string serialNumber, string nfcContentRead, string nfcContentUploaded)
         {
             SerialNumber = serialNumber;
             NFCContentRead = nfcContentRead;
-            GPSLoction = null;
+            NFCContentUploaded = nfcContentUploaded;
         }
 
         public AddAttendanceBody()

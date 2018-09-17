@@ -38,5 +38,7 @@ namespace NFCZavrsniWeb.Models.Entity
         public virtual Location Location1 { get; set; }
 
         public virtual TypeOfAttendance TypeOfAttendance1 { get; set; }
+
+        public string TagDetail { get { return Client1.Name + " / " + Location1.Name + " / " + TypeOfAttendance1.Name; } }
     }
 }

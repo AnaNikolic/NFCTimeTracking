@@ -89,8 +89,8 @@ namespace NFCZavrsniWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Employee = new SelectList(db.Employee, "ID", "OIB", attendance.Employee);
-            ViewBag.Tag = new SelectList(db.Tag, "ID", "TagContent", attendance.Tag);
+            ViewBag.Employee = new SelectList(db.Employee, "ID", "EmployeeDetail", attendance.Employee);
+            ViewBag.Tag = new SelectList(db.Tag, "ID", "TagDetail", attendance.Tag);
             return View(attendance);
         }
 

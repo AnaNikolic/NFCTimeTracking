@@ -7,10 +7,31 @@
     <ContentPage.Content>
         <StackLayout
             VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand">
-            <Label Text="Log in" FontSize="Large" HorizontalOptions="CenterAndExpand"  Margin="0, 20, 15, 5" FontAttributes="Bold"/>
-            <Entry x:Name="phoneNumberInput" Placeholder="+385999999999" Keyboard="Numeric" Text="+385"/>
-            <Button Text="Verify" HorizontalOptions="Center" Clicked="SendCode" />
+            HorizontalOptions="CenterAndExpand"
+            Margin="0, -35, 0, 0">
+            <Label Text="Log in" 
+                   FontSize="Large" 
+                   HorizontalOptions="CenterAndExpand"  
+                   Margin="0, 0, 15, 5" 
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+            <Label Text = "Please enter your phone number to log in."
+                   HorizontalTextAlignment = "Center"
+                   FontSize = "Medium"
+                   VerticalOptions = "Center"
+                   HorizontalOptions = "CenterAndExpand" 
+                   Margin="70, 5, 70, 5"/>
+            <Entry x:Name="phoneNumberInput"
+                   Margin="50, 5, 50, 5"
+                   Placeholder="+385999999999" 
+                   Keyboard="Numeric" 
+                   Text="+385"/>
+            <Button Text="Verify" 
+                    HorizontalOptions="Center" 
+                    Clicked="SendCode" 
+                    BackgroundColor="Crimson" 
+                    TextColor="White"
+                    BorderRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

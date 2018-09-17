@@ -46,12 +46,14 @@ namespace NFCZavrsniWeb.Models.Entity
         public virtual Client Client1 { get; set; }
 
         public virtual Person Person { get; set; }
+
+        public string EmployeeDetail { get { return Person.OIB + " " + Person.FirstName + " " + Person.LastName; } }
         
     }
-    
+    /*
     public partial class IsAdmin
     {
         public bool Admin { get; set; }
     }
-    
+    */
 }

@@ -30,6 +30,8 @@ namespace NFCZavrsniWeb.Models.Entity
         [StringLength(100)]
         public string Address { get; set; }
 
+        public string PersonDetail { get { return OIB + " " + FirstName + " " + LastName; } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee { get; set; }
     }

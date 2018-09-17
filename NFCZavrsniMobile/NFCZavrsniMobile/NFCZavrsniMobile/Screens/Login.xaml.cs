@@ -28,14 +28,18 @@ namespace NFCZavrsniMobile.Screens
             InitiateLogInBody body = new InitiateLogInBody(phoneID, phoneNumber);
 
             string code = Task.Run(async () => { return await r.PostAsync<InitiateLogInBody, string>(restUri, body, true); }).Result;
+            Settings.VerifyToken = code;
+            Settings.VerifyPhoneNumber = phoneNumber;
             if (code != null)
             {
-                Navigation.PushModalAsync(new NavigationPage( new Verify(code, phoneID, phoneNumber)));
+                Navigation.PushAsync(new NavigationPage( new Verify(code, phoneID, phoneNumber)));
             }
             else
             {
                 DisplayAlert("Not allowed", "Device and number do not match. Try retypeing the number.", "OK");
             }
         }
+
+
 	}
 }

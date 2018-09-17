@@ -26,20 +26,26 @@ namespace NFCZavrsniMobile.Screens
         public void LoginUser(object Sender, EventArgs e)
         {
             string code = verificationCodeInput.Text;
-            var r = new RestService();
-            LogInBody tijelo = new LogInBody(PhoneID, PhoneNumber, Token);
-            Uri restUri = new Uri(Constants.RestURLBearerToken);
-            App.btoken = Task.Run(async () => { return await r.AuthentificateAsync(restUri, tijelo); }).Result;
-            Settings.BearerToken = JsonConvert.SerializeObject(App.btoken);
-            CrudApi api = new CrudApi(App.btoken);
-            if (App.btoken.Access_token != "")
+            code = Settings.VerifyToken;
+            if (code == Token)
             {
-                Navigation.PushModalAsync(new NavigationPage(new AddAttendance()));
+                var r = new RestService();
+                LogInBody tijelo = new LogInBody(PhoneID, PhoneNumber, code);
+                Uri restUri = new Uri(Constants.RestURLBearerToken);
+                App.btoken = Task.Run(async () => { return await r.AuthentificateAsync(restUri, tijelo); }).Result;
+                Settings.BearerToken = JsonConvert.SerializeObject(App.btoken);
+                CrudApi api = new CrudApi(App.btoken);
+                if (App.btoken.Access_token != "")
+                {
+                    Settings.VerifyToken = "";
+                    Navigation.PushModalAsync(new NavigationPage(new AddAttendance()));
+                }
             }
             else
             {
                 DisplayAlert("Verification failed", "You entered invalid code.", "OK");
             }
         }
+
     }
 }

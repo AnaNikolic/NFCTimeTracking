@@ -19,7 +19,7 @@ namespace NFCZavrsniMobile.Data
             Token = token;
         }
 
-        public async Task<bool> PostAsync<T>(Uri url, object o, bool first = false) where T : class
+        public async Task<bool> PostAsync<T>(Uri url, object o = null, bool first = false) where T : class
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(o as T);
@@ -58,6 +58,22 @@ namespace NFCZavrsniMobile.Data
             var result = await response.Content.ReadAsStringAsync();
             var ret = JsonConvert.DeserializeObject<R>(result);
             return ret;
+        }
+
+        public async Task<bool> PostAsync(Uri url)
+        {
+            var client = new HttpClient();
+            HttpResponseMessage response = null;
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.Access_token);
+            response = await client.PostAsync(url, null);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<bool> PutAsync<T>(Uri url, object o, bool first = false) where T : class
